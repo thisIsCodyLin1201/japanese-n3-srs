@@ -7,7 +7,7 @@ export function defaultStore(): Store {
   return {
     version: 1,
     states: {},
-    settings: { newPerDay: 15, category: '全部' },
+    settings: { newPerDay: 15, category: '全部', mode: 'both' },
     daily: { date: todayISO(), newCount: 0 },
   }
 }
@@ -23,6 +23,7 @@ export function load(): Store {
       s.daily = { date: today, newCount: 0 }
     }
     if (!s.settings) s.settings = defaultStore().settings
+    if (!s.settings.mode) s.settings.mode = 'both' // 舊資料補預設
     if (!s.states) s.states = {}
     return s
   } catch {

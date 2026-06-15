@@ -32,6 +32,26 @@ function cells(line) {
     .map((c) => c.trim())
 }
 
+const isHiragana = (ch) => ch >= '぀' && ch <= 'ゟ'
+
+// 把例句中的目標動詞挖空（Mode 2 填空例句）。
+// 啟發式：取漢字語幹（去掉字尾送り假名，保留字中假名）→ 在例句定位 →
+// 從語幹往後吃掉接續的平假名（活用變化）→ 該整段就是要挖空的活用形。
+// 句中找不到語幹則回傳 null（不生成 cloze，保留看中文卡）。
+function makeCloze(kanji, sentenceJa) {
+  if (!kanji || !sentenceJa) return null
+  const core = kanji.replace(/[぀-ゟ]+$/, '') // 去字尾送り假名
+  if (!core) return null
+  const start = sentenceJa.indexOf(core)
+  if (start < 0) return null
+  let end = start + core.length
+  while (end < sentenceJa.length && isHiragana(sentenceJa[end])) end++
+  const answer = sentenceJa.slice(start, end)
+  if (!answer) return null
+  const text = sentenceJa.slice(0, start) + '＿＿＿' + sentenceJa.slice(end)
+  return { text, answer }
+}
+
 const cards = []
 let category = '' // 大類：動詞 / 形容詞 / 副詞 / 外來語
 let pos = '' // 細分詞性，例：イ形容詞、第一類動詞、複合類動詞
@@ -89,6 +109,8 @@ for (const line of md.split('\n')) {
   const front = kanji || kana
   if (!front) continue
 
+  const cloze = sentence ? makeCloze(kanji, sentence.ja) : null
+
   cards.push({
     id: `c${++id}`,
     category, // 動詞 / 形容詞 / 副詞 / 外來語
@@ -97,13 +119,15 @@ for (const line of md.split('\n')) {
     kanji, // 漢字（無則 null）
     zh, // 中文意思
     sentence, // { ja, zh } 或 null
+    cloze, // { text, answer } 或 null（Mode 2 填空）
   })
 }
 
 const byCat = cards.reduce((acc, c) => ((acc[c.category] = (acc[c.category] || 0) + 1), acc), {})
 const withSentence = cards.filter((c) => c.sentence).length
+const withCloze = cards.filter((c) => c.cloze).length
 
 writeFileSync(join(root, 'src', 'deck.json'), JSON.stringify(cards, null, 0) + '\n')
 console.log(`✅ 產生 ${cards.length} 張卡片 -> src/deck.json`)
 console.log(`   分類：`, byCat)
-console.log(`   含例句：${withSentence}`)
+console.log(`   含例句：${withSentence}　可填空(cloze)：${withCloze}`)
