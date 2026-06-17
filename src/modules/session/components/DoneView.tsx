@@ -35,7 +35,7 @@ const Hint = styled.p`
 // 佇列清空後的完成畫面。
 export function DoneView() {
   const store = useAtomValue(storeAtom)
-  const { done, restart } = useSession()
+  const { done, practiceAgain } = useSession()
   const { dueCount } = selectStats(store)
   const allNewDone = dueCount === 0 && store.daily.newCount >= store.settings.newPerDay
 
@@ -46,7 +46,7 @@ export function DoneView() {
       <Hint>
         {allNewDone ? '今日進度已完成，明天再繼續。' : '可在設定調高每日新卡上限，或明天再繼續。'}
       </Hint>
-      <Button intent="primary" block onClick={() => restart()}>
+      <Button intent="primary" block onClick={() => practiceAgain()}>
         再複習一輪
       </Button>
     </Wrap>

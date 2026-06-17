@@ -23,6 +23,15 @@ export function selectItems(store: Store): string[] {
   return ids
 }
 
+// 再複習一輪：不論到期日，重新練習目前範圍內「已學過」的項目（洗牌）。
+// 用於完成畫面——當日 SRS 佇列已清空時仍能立即再練一輪。
+// 若範圍內尚無已學項目，則退回一般佇列（含新卡）。
+export function buildPracticeQueue(store: Store): string[] {
+  const introduced = selectItems(store).filter((id) => store.states[id]?.introduced)
+  if (introduced.length === 0) return buildQueue(store)
+  return shuffle(introduced)
+}
+
 // 今日佇列：到期複習 item + 當日剩餘額度的新 item，洗牌
 export function buildQueue(store: Store): string[] {
   const today = todayISO()

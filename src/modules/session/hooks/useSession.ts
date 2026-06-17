@@ -7,7 +7,7 @@ import { freshState, schedule } from '~/modules/srs/srs'
 import type { Grade } from '~/modules/srs/types'
 import { storeAtom } from '~/store/atoms'
 
-import { doneAtom, flippedAtom, queueAtom, restartSessionAtom } from '../atoms'
+import { doneAtom, flippedAtom, practiceAgainAtom, queueAtom, restartSessionAtom } from '../atoms'
 
 // 本回合練習的核心 hook：暴露目前題目、翻面狀態、評分與重整。
 // 各元件各自呼叫此 hook，透過共享 atom 自動保持同步（呼應 Dcard 以 atom 串接元件的做法）。
@@ -18,6 +18,7 @@ export function useSession() {
   const [flipped, setFlipped] = useAtom(flippedAtom)
   const [done, setDone] = useAtom(doneAtom)
   const restartSession = useSetAtom(restartSessionAtom)
+  const practiceAgain = useSetAtom(practiceAgainAtom)
 
   const restart = useCallback(() => restartSession(store), [restartSession, store])
 
@@ -52,5 +53,16 @@ export function useSession() {
       ) as Record<Grade, number>)
     : null
 
-  return { queue, flipped, setFlipped, done, current, currentState, previews, grade, restart }
+  return {
+    queue,
+    flipped,
+    setFlipped,
+    done,
+    current,
+    currentState,
+    previews,
+    grade,
+    restart,
+    practiceAgain,
+  }
 }
