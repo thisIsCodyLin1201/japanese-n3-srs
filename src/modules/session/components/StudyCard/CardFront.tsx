@@ -52,14 +52,14 @@ export function CardFront({ card, type }: Props) {
         <ClozeHint>
           動詞．意思：<b>{card.zh}</b>
         </ClozeHint>
-        <Hint>想想空格的動詞，點一下看答案</Hint>
+        <Hint>回想空格中的動詞，點一下卡片顯示答案</Hint>
       </Face>
     )
   }
   return (
     <Face>
       <ZhBig>{card.zh}</ZhBig>
-      <Hint>想假名／漢字，點一下看答案</Hint>
+      <Hint>回想假名與漢字，點一下卡片顯示答案</Hint>
     </Face>
   )
 }

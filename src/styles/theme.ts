@@ -17,15 +17,26 @@ export const theme = {
     accentHover: '#5ab0db', // hover (blue400)
     onAccent: '#ffffff', // 主色上的文字
 
+    // 次要 / 停用 / 圖示按鈕
+    btnSecondary: 'rgba(0, 0, 0, 0.05)', // bgContainer
+    btnSecondaryHover: 'rgba(0, 0, 0, 0.03)', // bgGreyBtnHover
+    btnDisabled: '#e0e0e0', // bgBtnDisabled
+    textDisabled: 'rgba(0, 0, 0, 0.25)', // alphaBlack400
+    iconBtn: 'rgba(0, 0, 0, 0.7)', // iconButton (alphaBlack800)
+    iconBtnHoverBg: 'rgba(0, 0, 0, 0.04)',
+
     // 卡片類型徽章
     recoBadgeBg: '#e7f3f9', // blue100
     recoBadgeText: '#006aa6', // blue600
     clozeBadgeBg: '#f3ecfc', // 淺紫
     clozeBadgeText: '#996fc9', // purple600
 
-    // 危險（清空進度）
+    // 狀態色（清空進度等）
     danger: '#ea5c5c', // stateDanger (red500)
+    dangerHover: '#f78c88', // stateDangerHover (red400)
     dangerText: '#ffffff',
+    warning: '#f0a955', // stateReminder (yellow500)
+    warningHover: '#f0b941', // stateReminderHover (yellow400)
 
     // 評分鈕：對應狀態色 + 主色
     grade: {
@@ -33,6 +44,12 @@ export const theme = {
       hard: '#f0a955', // stateReminder (yellow500)
       good: '#49bd69', // stateSuccess (green500)
       easy: '#3397cf', // dcardPrimary
+    },
+    gradeHover: {
+      again: '#f78c88', // red400
+      hard: '#f0b941', // yellow400
+      good: '#6fc985', // green400
+      easy: '#5ab0db', // blue400
     },
   },
   radius: {

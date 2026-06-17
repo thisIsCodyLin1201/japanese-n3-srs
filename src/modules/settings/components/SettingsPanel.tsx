@@ -2,6 +2,7 @@ import { useAtom, useAtomValue, useSetAtom } from 'jotai'
 import { useRef } from 'react'
 import styled from 'styled-components'
 
+import { Button } from '~/components/Button'
 import { Panel, PanelHint } from '~/components/Panel'
 import { useExportProgress } from '~/modules/persistence/mutations/useExportProgress'
 import { useImportProgress } from '~/modules/persistence/mutations/useImportProgress'
@@ -21,51 +22,28 @@ const Field = styled.label`
 const Select = styled.select`
   padding: 12px;
   border-radius: ${({ theme }) => theme.radius.control};
-  background: ${({ theme }) => theme.colors.surface2};
+  background: ${({ theme }) => theme.colors.surface};
   color: ${({ theme }) => theme.colors.text};
   border: 1px solid ${({ theme }) => theme.colors.border};
   font-size: 16px; /* ≥16px 避免 iOS 聚焦自動放大 */
   min-height: 48px;
+
+  &:focus {
+    outline: none;
+    border-color: ${({ theme }) => theme.colors.accent};
+  }
 `
 
 const Range = styled.input`
   width: 100%;
   height: 32px;
+  accent-color: ${({ theme }) => theme.colors.accent};
 `
 
 const Row = styled.div`
   display: flex;
   gap: 8px;
   flex-wrap: wrap;
-`
-
-const Button = styled.button`
-  padding: 14px 16px;
-  border-radius: ${({ theme }) => theme.radius.control};
-  border: 1px solid ${({ theme }) => theme.colors.border};
-  background: ${({ theme }) => theme.colors.surface2};
-  color: ${({ theme }) => theme.colors.text};
-  cursor: pointer;
-  font-size: 15px;
-  min-height: 48px;
-  flex: 1;
-`
-
-const PrimaryButton = styled(Button)`
-  background: ${({ theme }) => theme.colors.accent};
-  color: ${({ theme }) => theme.colors.onAccent};
-  border: none;
-  font-weight: 700;
-
-  &:hover {
-    background: ${({ theme }) => theme.colors.accentHover};
-  }
-`
-
-const DangerButton = styled(Button)`
-  background: ${({ theme }) => theme.colors.danger};
-  border: none;
-  color: ${({ theme }) => theme.colors.dangerText};
 `
 
 export function SettingsPanel() {
@@ -118,11 +96,17 @@ export function SettingsPanel() {
           onChange={(e) => setSettings({ newPerDay: Number(e.target.value) })}
         />
       </Field>
-      <PrimaryButton onClick={applyAndRestart}>套用並重新開始</PrimaryButton>
+      <Button intent="primary" block onClick={applyAndRestart}>
+        套用並重新開始
+      </Button>
       <hr />
       <Row>
-        <Button onClick={exportProgress}>⬇️ 匯出進度</Button>
-        <Button onClick={() => fileInput.current?.click()}>⬆️ 匯入進度</Button>
+        <Button intent="secondary" style={{ flex: 1 }} onClick={exportProgress}>
+          匯出進度
+        </Button>
+        <Button intent="secondary" style={{ flex: 1 }} onClick={() => fileInput.current?.click()}>
+          匯入進度
+        </Button>
         <input
           ref={fileInput}
           type="file"
@@ -131,7 +115,9 @@ export function SettingsPanel() {
           onChange={(e) => e.target.files?.[0] && importProgress(e.target.files[0])}
         />
       </Row>
-      <DangerButton onClick={resetProgress}>🗑️ 清空所有進度</DangerButton>
+      <Button intent="danger" block onClick={resetProgress}>
+        清空所有進度
+      </Button>
       <PanelHint>
         填空題只對「有例句的動詞」出題（共 202 句）。進度存這台瀏覽器，換裝置請用匯出／匯入。
       </PanelHint>

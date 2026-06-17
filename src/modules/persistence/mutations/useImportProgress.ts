@@ -21,7 +21,7 @@ export function useImportProgress() {
         setStore(obj)
         restartSession(obj)
         setPanel(null)
-        alert('已匯入進度 ✅')
+        alert('已匯入進度')
       } catch {
         alert('檔案格式錯誤，匯入失敗')
       }

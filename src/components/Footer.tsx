@@ -19,8 +19,8 @@ export function Footer({ supported, hasJaVoice }: Props) {
       {!supported
         ? '此瀏覽器不支援語音朗讀'
         : hasJaVoice
-          ? '🔊 日文朗讀可用'
-          : '🔇 未偵測到日文語音，朗讀用預設語音'}
+          ? '日文朗讀已就緒'
+          : '未偵測到日文語音，將以預設語音朗讀'}
     </Bar>
   )
 }

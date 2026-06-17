@@ -20,18 +20,29 @@ const GradeButton = styled.button<{ $grade: Grade }>`
   align-items: center;
   gap: 3px;
   color: #fff;
-  font-weight: 700;
+  font-weight: 500;
   min-height: 64px;
   position: relative;
   background: ${({ theme, $grade }) => theme.colors.grade[$grade]};
+  transition:
+    background-color 0.15s ease,
+    transform 0.05s ease;
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover:not(:active) {
+      background: ${({ theme, $grade }) => theme.colors.gradeHover[$grade]};
+    }
+  }
 
   &:active {
-    filter: brightness(0.85);
+    transform: scale(0.97);
+    box-shadow: inset 0 2px 2px 0 rgba(0, 0, 0, 0.3);
   }
 `
 
 const Label = styled.span`
   font-size: 16px;
+  font-weight: 600;
 `
 
 const Interval = styled.span`

@@ -29,7 +29,7 @@ export function StatBar() {
         新卡 {store.daily.newCount}/{store.settings.newPerDay}
       </span>
       <span>待複習 {dueCount}</span>
-      <span>剩 {queue.length}</span>
+      <span>剩餘 {queue.length}</span>
     </Bar>
   )
 }

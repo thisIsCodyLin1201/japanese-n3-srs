@@ -3,6 +3,9 @@ import styled from 'styled-components'
 
 import { panelAtom, type Panel } from '~/store/atoms'
 
+import { IconButton } from './IconButton'
+import { IconChart, IconGear } from './icons'
+
 const Bar = styled.header`
   display: flex;
   align-items: center;
@@ -12,19 +15,13 @@ const Bar = styled.header`
 
 const Title = styled.h1`
   font-size: 18px;
+  font-weight: 600;
   margin: 0;
 `
 
 const Actions = styled.div`
-  button {
-    background: none;
-    border: none;
-    font-size: 24px;
-    cursor: pointer;
-    padding: 8px;
-    min-width: 44px;
-    min-height: 44px;
-  }
+  display: flex;
+  gap: 4px;
 `
 
 export function Header() {
@@ -33,14 +30,18 @@ export function Header() {
 
   return (
     <Bar>
-      <Title>N3 單字 SRS</Title>
+      <Title>N3 單字複習</Title>
       <Actions>
-        <button aria-label="統計" onClick={() => toggle('stats')}>
-          📊
-        </button>
-        <button aria-label="設定" onClick={() => toggle('settings')}>
-          ⚙️
-        </button>
+        <IconButton aria-label="統計" aria-pressed={panel === 'stats'} onClick={() => toggle('stats')}>
+          <IconChart />
+        </IconButton>
+        <IconButton
+          aria-label="設定"
+          aria-pressed={panel === 'settings'}
+          onClick={() => toggle('settings')}
+        >
+          <IconGear />
+        </IconButton>
       </Actions>
     </Bar>
   )

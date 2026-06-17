@@ -1,6 +1,7 @@
 import { useAtomValue } from 'jotai'
 import styled from 'styled-components'
 
+import { Button } from '~/components/Button'
 import { selectStats } from '~/modules/stats/queries/selectStats'
 import { storeAtom } from '~/store/atoms'
 
@@ -10,34 +11,25 @@ const Wrap = styled.div`
   text-align: center;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 8px;
   align-items: center;
 `
 
-const Emoji = styled.div`
-  font-size: 64px;
+const Title = styled.h2`
+  font-size: 24px;
+  font-weight: 500;
+  margin: 0;
+`
+
+const Summary = styled.p`
+  font-size: 16px;
+  margin: 0;
 `
 
 const Hint = styled.p`
-  font-size: 13px;
+  font-size: 14px;
   color: ${({ theme }) => theme.colors.muted};
-`
-
-const PrimaryButton = styled.button`
-  width: 100%;
-  background: ${({ theme }) => theme.colors.accent};
-  color: ${({ theme }) => theme.colors.onAccent};
-  border: none;
-  border-radius: ${({ theme }) => theme.radius.button};
-  padding: 18px;
-  font-size: 17px;
-  font-weight: 700;
-  cursor: pointer;
-  min-height: 56px;
-
-  &:hover {
-    background: ${({ theme }) => theme.colors.accentHover};
-  }
+  margin: 0 0 8px;
 `
 
 // 佇列清空後的完成畫面。
@@ -49,12 +41,14 @@ export function DoneView() {
 
   return (
     <Wrap>
-      <Emoji>🎉</Emoji>
-      <p>本回合完成！今天已複習 {done} 題。</p>
+      <Title>本回合結束</Title>
+      <Summary>今天已複習 {done} 題</Summary>
       <Hint>
-        {allNewDone ? '今日新卡也學完了，明天再來吧～' : '可在設定調高每日新卡上限，或明天再來。'}
+        {allNewDone ? '今日進度已完成，明天再繼續。' : '可在設定調高每日新卡上限，或明天再繼續。'}
       </Hint>
-      <PrimaryButton onClick={() => restart()}>重新整理佇列</PrimaryButton>
+      <Button intent="primary" block onClick={() => restart()}>
+        再複習一輪
+      </Button>
     </Wrap>
   )
 }

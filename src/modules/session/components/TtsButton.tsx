@@ -1,14 +1,41 @@
 import styled from 'styled-components'
 
+import { IconSpeaker } from '~/components/icons'
 import { speak, ttsSupported } from '~/modules/tts/tts'
 
 const Button = styled.button`
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-size: 20px;
-  margin-left: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   vertical-align: middle;
+  width: 28px;
+  height: 28px;
+  margin-left: 6px;
+  padding: 0;
+  border: none;
+  background: none;
+  border-radius: 999px;
+  color: ${({ theme }) => theme.colors.iconBtn};
+  cursor: pointer;
+  transition:
+    background-color 0.15s ease,
+    transform 0.05s ease;
+
+  svg {
+    width: 18px;
+    height: 18px;
+    display: block;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      background: ${({ theme }) => theme.colors.iconBtnHoverBg};
+    }
+  }
+
+  &:active {
+    transform: scale(0.9);
+  }
 `
 
 interface Props {
@@ -26,7 +53,7 @@ export function TtsButton({ text }: Props) {
         speak(text)
       }}
     >
-      🔊
+      <IconSpeaker />
     </Button>
   )
 }
