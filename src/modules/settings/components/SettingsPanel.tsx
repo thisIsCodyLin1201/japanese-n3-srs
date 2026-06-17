@@ -23,7 +23,7 @@ const Select = styled.select`
   border-radius: ${({ theme }) => theme.radius.control};
   background: ${({ theme }) => theme.colors.surface2};
   color: ${({ theme }) => theme.colors.text};
-  border: 1px solid ${({ theme }) => theme.colors.surface2};
+  border: 1px solid ${({ theme }) => theme.colors.border};
   font-size: 16px; /* ≥16px 避免 iOS 聚焦自動放大 */
   min-height: 48px;
 `
@@ -42,7 +42,7 @@ const Row = styled.div`
 const Button = styled.button`
   padding: 14px 16px;
   border-radius: ${({ theme }) => theme.radius.control};
-  border: 1px solid ${({ theme }) => theme.colors.surface2};
+  border: 1px solid ${({ theme }) => theme.colors.border};
   background: ${({ theme }) => theme.colors.surface2};
   color: ${({ theme }) => theme.colors.text};
   cursor: pointer;
@@ -56,6 +56,10 @@ const PrimaryButton = styled(Button)`
   color: ${({ theme }) => theme.colors.onAccent};
   border: none;
   font-weight: 700;
+
+  &:hover {
+    background: ${({ theme }) => theme.colors.accentHover};
+  }
 `
 
 const DangerButton = styled(Button)`

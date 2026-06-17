@@ -6,7 +6,7 @@ export const GlobalStyle = createGlobalStyle`
   :root {
     --safe-top: env(safe-area-inset-top, 0px);
     --safe-bottom: env(safe-area-inset-bottom, 0px);
-    color-scheme: dark;
+    color-scheme: light;
   }
 
   * {
@@ -28,8 +28,8 @@ export const GlobalStyle = createGlobalStyle`
   body {
     background: ${({ theme }) => theme.colors.bg};
     color: ${({ theme }) => theme.colors.text};
-    font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'PingFang TC',
-      'Noto Sans TC', 'Microsoft JhengHei', sans-serif;
+    font-family: Roboto, 'Helvetica Neue', Helvetica, Arial, 'PingFang TC', '黑體-繁',
+      'Heiti TC', '微軟正黑體', 'Microsoft JhengHei', sans-serif;
     overscroll-behavior: none; /* 關閉 iOS 整頁彈跳 */
     -webkit-user-select: none;
     user-select: none;

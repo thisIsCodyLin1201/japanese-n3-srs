@@ -34,6 +34,10 @@ const PrimaryButton = styled.button`
   font-weight: 700;
   cursor: pointer;
   min-height: 56px;
+
+  &:hover {
+    background: ${({ theme }) => theme.colors.accentHover};
+  }
 `
 
 // 佇列清空後的完成畫面。

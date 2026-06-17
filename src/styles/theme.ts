@@ -1,33 +1,49 @@
-// 設計 token，對應原本 styles.css 的 :root CSS 變數。
-// styled-components 透過 ThemeProvider 注入，元件以 ${({ theme }) => ...} 取用，
-// 取代散落各處的色碼字面值（呼應 Dcard Web 以 theme 為單一來源的做法）。
+// 設計 token 取自公司設計系統（淺色產品介面）。
+// 基準：白卡片、淺灰頁面底、海洋藍主色、細邊框 + 柔和層次陰影。
 export const theme = {
   colors: {
-    bg: '#0f172a',
-    surface: '#1e293b',
-    surface2: '#334155',
-    text: '#e2e8f0',
-    muted: '#94a3b8',
-    accent: '#38bdf8',
-    onAccent: '#042f3f',
-    recoBadgeBg: '#1e3a5f',
-    recoBadgeText: '#93c5fd',
-    clozeBadgeBg: '#3b2f5f',
-    clozeBadgeText: '#c4b5fd',
-    danger: '#7f1d1d',
-    dangerText: '#fecaca',
+    // 頁面與表面
+    bg: '#f2f2f2', // 頁面底（neutral200）
+    surface: '#ffffff', // 白卡片 / 面板
+    surface2: '#f2f2f2', // 卡片內的淺灰區塊（例句框、輸入、進度軌道）
+    border: '#e0e0e0', // 表面細邊框（neutral300）
+
+    // 文字
+    text: 'rgba(0, 0, 0, 0.85)', // textPrimary
+    muted: 'rgba(0, 0, 0, 0.5)', // textSecondary
+
+    // 主色（海洋藍）
+    accent: '#3397cf', // dcardPrimary (blue500)
+    accentHover: '#5ab0db', // hover (blue400)
+    onAccent: '#ffffff', // 主色上的文字
+
+    // 卡片類型徽章
+    recoBadgeBg: '#e7f3f9', // blue100
+    recoBadgeText: '#006aa6', // blue600
+    clozeBadgeBg: '#f3ecfc', // 淺紫
+    clozeBadgeText: '#996fc9', // purple600
+
+    // 危險（清空進度）
+    danger: '#ea5c5c', // stateDanger (red500)
+    dangerText: '#ffffff',
+
+    // 評分鈕：對應狀態色 + 主色
     grade: {
-      again: '#ef4444',
-      hard: '#f59e0b',
-      good: '#22c55e',
-      easy: '#3b82f6',
+      again: '#ea5c5c', // stateDanger
+      hard: '#f0a955', // stateReminder (yellow500)
+      good: '#49bd69', // stateSuccess (green500)
+      easy: '#3397cf', // dcardPrimary
     },
   },
   radius: {
-    card: '20px',
-    panel: '18px',
-    button: '16px',
-    control: '12px',
+    card: '12px',
+    panel: '12px',
+    button: '10px', // 大型按鈕
+    control: '8px', // 中型控制項
+  },
+  shadow: {
+    card: '0px 2px 8px -1px rgba(0, 0, 0, 0.2)', // level2
+    panel: '0px 1px 6px -2px rgba(0, 0, 0, 0.32)', // level1
   },
   layout: {
     maxWidth: '560px',

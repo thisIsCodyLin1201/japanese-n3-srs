@@ -19,6 +19,10 @@ const ShowButton = styled.button`
   font-weight: 700;
   cursor: pointer;
   min-height: 56px;
+
+  &:hover {
+    background: ${({ theme }) => theme.colors.accentHover};
+  }
 `
 
 // 底部操作列：未翻面顯示「顯示答案」，翻面後顯示四顆評分鈕。

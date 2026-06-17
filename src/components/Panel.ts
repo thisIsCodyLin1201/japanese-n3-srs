@@ -4,6 +4,8 @@ import styled from 'styled-components'
 export const Panel = styled.section`
   background: ${({ theme }) => theme.colors.surface};
   border-radius: ${({ theme }) => theme.radius.panel};
+  border: 1px solid ${({ theme }) => theme.colors.border};
+  box-shadow: ${({ theme }) => theme.shadow.panel};
   padding: 20px;
   display: flex;
   flex-direction: column;
