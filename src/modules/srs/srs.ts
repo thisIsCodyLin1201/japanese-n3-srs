@@ -1,8 +1,6 @@
-import type { CardState } from './types'
+import type { CardState, Grade } from './types'
 
 // SM-2 間隔重複演算法（SuperMemo 2），4 顆評分鈕對應 quality 值
-export type Grade = 'again' | 'hard' | 'good' | 'easy'
-
 const QUALITY: Record<Grade, number> = {
   again: 1, // 忘記
   hard: 3, // 模糊

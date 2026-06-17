@@ -21,26 +21,3 @@ export interface Card {
 
 // SRS 排程的最小單位。一張有例句的動詞卡會拆成 reco + cloze 兩個 item，各自獨立排程。
 export type CardType = 'reco' | 'cloze'
-
-export interface CardState {
-  ef: number // ease factor
-  reps: number // 連續答對次數
-  interval: number // 間隔天數
-  due: string // 下次到期日 ISO yyyy-mm-dd
-  introduced: boolean // 是否已學過
-  lapses: number // 忘記次數
-}
-
-export interface Store {
-  version: number
-  states: Record<string, CardState>
-  settings: {
-    newPerDay: number
-    category: string // 全部 / 動詞 / 形容詞 / 副詞 / 外來語
-    mode: 'reco' | 'cloze' | 'both' // 看中文 / 填空例句 / 兩者
-  }
-  daily: {
-    date: string
-    newCount: number
-  }
-}

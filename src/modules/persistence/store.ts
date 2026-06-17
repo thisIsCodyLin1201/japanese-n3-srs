@@ -1,6 +1,9 @@
-import type { Store } from './types'
-import { todayISO } from './srs'
+import { todayISO } from '~/modules/srs/srs'
 
+import type { Store } from './types'
+
+// localStorage 持久層（取代後端 API）。Dcard Web 走 api-client；
+// 這支離線 app 的「資料來源」就是這台瀏覽器的 localStorage。
 const KEY = 'n3-srs-v1'
 
 export function defaultStore(): Store {
